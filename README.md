@@ -1,4 +1,4 @@
-# Reentrance-attack-on ethereum smart contracts.
+# Reentrance attack on ethereum smart contracts.
 
 Assuming that one has already know the deployment of the contracts on the ethereum platform.
 For reference go through the following medium article
