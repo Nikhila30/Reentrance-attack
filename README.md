@@ -11,7 +11,9 @@ Basic notion and the explaination of attack can be found in the article https://
 .
 # Frameworks and their versions used:
   Solidity : v0.5.8 
+  
   Ganache-cli : v6.7.0
+  
   Truffle : v5.0.41
 
 # Note 
